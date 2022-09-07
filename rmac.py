@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
     Generate a random mac address with various settings (globally unique, broadcast)
-    Copyright (C) 2015  Bram Staps
+    Copyright (C) 2022  Bram Staps
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,12 +19,12 @@ import random
 import sys
 
 def byte2hex(b):
-    return chr(b).encode("hex")
+    return bytes([b]).hex()
 
 l = []
-l.append( random.getrandbits(6) * 4 )
+l.append( random.getrandbits(6) << 2 )
 
-for x in xrange(5):
+for _ in range(5):
     l.append( random.getrandbits(8) )
 
 sys.stdout.write( ":".join(map(byte2hex, l)) )
